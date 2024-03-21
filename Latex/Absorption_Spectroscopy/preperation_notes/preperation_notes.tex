@@ -1,0 +1,74 @@
+%Authoren: Max Mustermann
+%Vorlage: Max Mustermann
+
+
+%
+\documentclass[headheight=30pt]{scrartcl}
+
+\usepackage[utf8]{inputenc} % utf8x durch utf8 ersetzt wegen biblatex
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amstext, graphicx}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage{pdfpages} %zum importieren des Deckblattes
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{lastpage}
+\usepackage[style=numeric]{biblatex} %Literaturverwaltung
+\usepackage{tabularx} %für die Legende im Gruundlagen Oszi Bild
+\usepackage{float}
+\usepackage{physics}
+
+\addbibresource{literatur.bib} %Literatur-Resourcen
+\pagestyle{scrheadings}
+
+\date{\today{}, Graz}
+\author{maxjost42}
+\title{Vorbereitung}
+
+\clearpairofpagestyles
+\ihead{\today{} \\ }
+\chead{Authorname \\ Thema}
+\ohead{Kurs: Labor \\ }
+\cfoot{\pagemark \, / \, \pageref{LastPage}}
+
+
+\begin{document}
+
+
+\newpage
+\paragraph{1. In welchem Verhältnis stehen die Gewichte der transportierten Massen verschiedener Substanzen bei gleichem Ladungsdurchfluß?} ~
+\begin{equation}
+    F = \frac{ItM}{mz} \rightarrow m = \frac{Fz}{ItM}
+    \label{equ:FaradayConst}
+\end{equation}
+Startend mit Gl. \ref{equ:FaradayConst} aus \cite{LAB} wird das Massenverhältnis $m_1/m_2$ her:
+\begin{equation}
+    \frac{m_1}{m_2} = \frac{\frac{Fz_1}{ItM_1}}{\frac{Fz_2}{ItM_2}} = \frac{\frac{z_1}{M_1}}{\frac{z_2}{M_2}} = \frac{z_1M_2}{z_2M_1}
+    \label{equ:MassVerh}
+\end{equation}
+Aus Gl. \ref{equ:MassVerh} ist nun das massenverhältnis zu sehen, welches nur von der $z$-Wertigkeit und der molaren Masse der beiden Substanzen abhängig ist.
+
+
+\paragraph{2. Das Atomgewicht von Silber mit der Ordnunszahl 47 ist 107.868. Begrunden Sie die Unganzzahligkeit!} ~ \\
+Das Atomgewicht von Silber wird in der atomaren Masseneinheit \textit{u} \cite{ATOMM} angegeben und durch die Anzahl an Protonen und Neutronen im Atomkern berechnet.
+Protonen und Neutronen besitzen aber nicht genau ein gewicht von 1 u sondern $m_{p^+}$ = 1,007276 u \cite{PROTM} und $m_n$ = 1,008664 u \cite{NEUTM}.
+Summiert man diese gewichter auf mit der Protonenanzahl $n_{p^+}$ = 47 und Neutronenanzahl $n_{n}$ = 107 - 47 = 60 so ergibt sich die atomare Masse von $^{107}Ag$ mit $m_{^{107}Ag}$ = 107.868 u.
+
+
+\paragraph{3. Der vorliegende Elektrolyt wurde durch Auflösen von AgNO$_3$-Kristallen in Wasser hergestellt.
+    Beim Lösen der Kristalle zerfällt das Kristallgitter, die Ionen werden frei (Dissoziation), und können sich unter Einfluß eines äußeren elektrischen Feldes zwischen den Molekülen des Lösungsmittels bewegen.
+    Begrunden Sie die Dissoziation der Ionen!
+    Hinweis: Die elektrostatische Anziehung zwischen den Ionen hängt nach dem Coulomb’schen Gesetz von der Dielektrizitätskonstante ab} ~ \\
+Sieht man sich Gl. \ref{equ:elFeld} (das Coulombsche Gesetz) für die Kraft $\vb{F_1}$ die auf die Ladung $q_1$ wirkt an so stellt man fest,
+dass bei Materialien mit größerer relativer Permittivität $\varepsilon_r$ diese Kraft kleiner sein muss.
+\begin{equation}
+    \vb{F_1} = \frac{q_1q_2}{4\pi\varepsilon_r \varepsilon_0 |\vb{r_{12}}|^3} \vb{r_{12}}
+    \label{equ:elFeld}
+\end{equation}
+Silbernitratkristalle besitzt eine relative Permittivität von $\varepsilon_{rAgNO_3}$ = 9 \cite{PERMS} und Wasser eine relative Permittivität von $\varepsilon_{rH_2O}$ = 1.77 \cite{PERMW}.
+Somit kann sich Wasser mit größerer Kraft um die Ag und NO$_3$ Ionen anordnen als besagte Ionen untereinander.
+\newpage
+
+
+\printbibliography
+\end{document}

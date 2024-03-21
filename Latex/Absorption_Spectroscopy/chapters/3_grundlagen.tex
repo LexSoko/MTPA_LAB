@@ -1,0 +1,14 @@
+%********VORAUSSETZUNGEN & GRUNDLAGEN*********
+\section{Voraussetzung \& Grundlagen}
+\label{sec:voraussetzungen-grundlagen}
+
+\subsection{Unsicherheitsanalyse}
+\label{sec:unsichi}
+Im gesammten Protokoll, sofern nicht anders angegeben, wird die Größtunsicherheitsmethode laut Gl.\ref{equ:groestunsicherheit} \cite{MMETH} für alle Fehlerrechnungen benutzt.
+Hierzu wird das totale Differential der ausgehenden Gleichung gebildet und die Absolutbeträge der Summanden mit der ermittelten Unsicherheit multipliziert.
+Alle statistischen Auswertungen werden mit einer statistischen Unsicherheit laut der Studentschen t-Verteilung behaftet.
+\begin{equation}
+    \varDelta f = \biggl| \frac{\partial f}{\partial x_{1}} \cdot \varDelta x_{1} \biggl| + \biggl| \frac{\partial f}{\partial x_{2}} \cdot \varDelta x_{2} \biggl| + .... + \biggl| \frac{\partial f}{\partial x_{n}} \cdot \varDelta x_{n} \biggl|
+    \label{equ:groestunsicherheit}
+\end{equation}
+\newpage
