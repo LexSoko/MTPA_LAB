@@ -1,12 +1,46 @@
 %********VORAUSSETZUNGEN & GRUNDLAGEN*********
-\section{Voraussetzung \& Grundlagen}
+\section{Prerequisite \& Basics}
 \label{sec:voraussetzungen-grundlagen}
 
-\subsection{Unsicherheitsanalyse}
+\subsection{Laser Principles}
+    % Explain the basic principles of lasers, including stimulated emission, population inversion, and coherence.
+    % Discuss their importance in scientific and technological applications.
+
+\subsection{Pulsed Lasers and Time-Bandwidth Limit}
+    % Describe pulsed lasers, their advantages, and limitations.
+    % Discuss the concept of time-bandwidth limit and its relevance.
+
+\subsection{Dielectric Mirrors}
+    % Explain what dielectric mirrors are and how they enhance laser performance.
+    % Discuss their role in reflecting specific wavelengths.
+
+\subsection{Second Harmonic Generation (SHG)}
+    % Introduce SHG as a nonlinear optical process.
+    % Explain how crystals generate light at twice the input frequency.
+    % Discuss the importance of phase matching.
+
+\subsection{Iodine Absorption}
+    % Cover the absorption properties of iodine, including rotation, vibration, and temperature dependence.
+    % Explain natural linewidth and temperature broadening effects.
+
+\subsection{Beer-Lambert Law}
+    % Introduce the Beer-Lambert Law and its relevance in spectroscopy.
+    % Explain how it relates absorbance to concentration and path length.
+
+\subsection{Grating Spectrometer}
+    % Briefly mention grating spectrometers and their role in analyzing laser spectra.
+    % Explain how diffraction gratings disperse light for spectral measurements.
+
+
+
+
+
+\subsection{Uncertainty analysis}
 \label{sec:unsichi}
-Im gesammten Protokoll, sofern nicht anders angegeben, wird die Größtunsicherheitsmethode laut Gl.\ref{equ:groestunsicherheit} \cite{MMETH} für alle Fehlerrechnungen benutzt.
-Hierzu wird das totale Differential der ausgehenden Gleichung gebildet und die Absolutbeträge der Summanden mit der ermittelten Unsicherheit multipliziert.
-Alle statistischen Auswertungen werden mit einer statistischen Unsicherheit laut der Studentschen t-Verteilung behaftet.
+
+In the entire protocol, unless otherwise specified, the maximum uncertainty method according to Eq.\ref{equ:groestunsicherheit} \cite{MMETH} is used for all error calculations.
+For this purpose, the total differential of the outgoing equation is formed and the absolute values of the summands are multiplied by the uncertainty determined.
+All statistical evaluations are subject to a statistical uncertainty according to the Student's t-distribution.
 \begin{equation}
     \varDelta f = \biggl| \frac{\partial f}{\partial x_{1}} \cdot \varDelta x_{1} \biggl| + \biggl| \frac{\partial f}{\partial x_{2}} \cdot \varDelta x_{2} \biggl| + .... + \biggl| \frac{\partial f}{\partial x_{n}} \cdot \varDelta x_{n} \biggl|
     \label{equ:groestunsicherheit}
