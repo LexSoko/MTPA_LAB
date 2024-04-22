@@ -5,11 +5,48 @@
 \subsection{Laser Principles}
     % Explain the basic principles of lasers, including stimulated emission, population inversion, and coherence.
     % Discuss their importance in scientific and technological applications.
-
-\subsection{Pulsed Lasers and Time-Bandwidth Limit}
+    \begin{wrapfigure}[16]{r}[0cm]{0.4\textwidth}
+        \centering
+        \vspace{-\normalbaselineskip}
+        \includegraphics[width=0.4\textwidth]{Laser_Cavity.png}
+        \vspace{-10pt}
+        \caption{ 1. Gain medium , 2.Laser pumping energy, 3. High reflector , 4. Output coupler , 5. Laser Beam  \cite{Laser_cav} }
+        
+        \label{fig:lasercav}
+    \end{wrapfigure}
+    
+    A laser operates by amplifying light through stimulated emission in a gain medium, fueled by an external energy source. 
+    Optical feedback, often facilitated by mirrors within an optical cavity, promotes coherence. 
+    Variations in laser design exist, but typically involve an output coupler and elements for beam manipulation. 
+    These devices emit coherent light with controlled properties, akin to electronic oscillators. \\
+    \subsubsection{Stimulated emission}
+    Stimulated emission is a fundamental process in laser physics, characterized by the emission of a photon from an already excited atom when stimulated by the presence of a photon with frequency $\nu_{12}$ corresponding to the energy gap $\Delta E$ of the excited state to ground state transition. 
+    Mathematically, the rate of stimulated emission is expressed as proportional to the number of atoms $N_2$ in the excited state and the radiation density of the light. 
+    This relationship is encapsulated by the Einstein coefficients. 
+    Specifically, the probability of a photon causing stimulated emission in a single excited atom is exactly equal to the probability of a photon being absorbed by an atom in the ground state. 
+    This equality holds when the numbers of atoms in the ground and excited states are equal, resulting in a balanced rate of stimulated emission and absorption. \\
+    For a laser to function effectively, the rate of stimulated emission must surpass that of absorption, necessitating a population inversion where $N_2$/$N_1$ > 1. 
+    In other words, the population of the excited state must exceed that of the ground state. 
+    %\begin{wrapfigure}[13]{l}[0cm]{0.3\textwidth}
+    %    \centering
+    %    \includegraphics[width=0.3\textwidth]{Stim_Emission.png}
+    %    
+    %    \caption[width = 0.1\textwidth]{ Stimulated Emission  \cite{Laser_cav} }
+    %    \label{fig:energy_diagram}
+    %\end{wrapfigure}
+    This condition allows for the production of a continuously increasing number of photons, establishing optical gain within the laser medium.
+    Understanding the interplay between absorption, stimulated emission, and population inversion is crucial for the design and operation of laser systems. 
+    By harnessing stimulated emission and achieving population inversion, lasers can amplify light coherently, enabling applications ranging from scientific research to industrial manufacturing.
+    \monofig{width = 0.5\textwidth}{Stim_Emission.png}{ Stimulated Emission  \cite{Laser_cav} }{fig:energy_diagram}
+\newpage
+\subsection{Pulsed Lasers (Mode Locking)}
     % Describe pulsed lasers, their advantages, and limitations.
     % Discuss the concept of time-bandwidth limit and its relevance.
-
+    Mode locking in optics is a technique used to generate ultra-short pulses of light in lasers, typically on the scale of picoseconds or femtoseconds. 
+    By inducing a fixed phase relationship between the longitudinal modes of the laser's resonant cavity, constructive interference between these modes produces synchronized pulses. 
+    This method, known as mode locking, alters the behavior of the laser's modes, causing them to periodically constructively interfere and emit intense bursts of light. 
+    The pulse duration is determined by the number of locked modes and their frequency separation, governed by the laser's spectral width. 
+    Mode locking enables precise control over pulse durations, with applications ranging from scientific research to industrial and medical fields.
 \subsection{Dielectric Mirrors}
     % Explain what dielectric mirrors are and how they enhance laser performance.
     % Discuss their role in reflecting specific wavelengths.
