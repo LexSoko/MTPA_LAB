@@ -5,7 +5,7 @@
 \usepackage[utf8]{inputenc} % utf8x durch utf8 ersetzt wegen biblatex
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amstext,amsfonts}
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 \usepackage{csquotes}
 \usepackage{pdfpages} %zum importieren des Deckblattes
 \usepackage{geometry}
@@ -22,7 +22,7 @@
 \usepackage[export]{adjustbox}
 \usepackage{a4wide}
 \usepackage{siunitx}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{multicol}
 \usepackage{makecell}
 \usepackage{wrapfig}
@@ -122,9 +122,9 @@
 
 %---------------HEADER TEXT------------------------------------
 \clearpairofpagestyles
-\ihead{\today{} \\ }
-\chead{Aleksey Sokolov / Dominik Milacher\\ Absorbtion Spectroscopy }
-\ohead{Kurs: MTPA \\ }
+\ihead{Absorption\\Spectroscopy}
+\chead{Aleksey Sokolov\\Dominik Milacher}
+\ohead{\today}
 \cfoot{\pagemark \, / \, \pageref{LastPage}}
 
 %---------------DOCUMENT TEXT------------------------------------
@@ -143,5 +143,6 @@
 \input{chapters/8_diskussion}
 \input{chapters/9_zusammenfassung}
 
+\section{Literature}
 \printbibliography
 \end{document}
