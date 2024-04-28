@@ -36,13 +36,13 @@ The overall procedure for directing the beam towards the spectrometer as desired
 \subsection{Measurement Procedure}
 \label{sec:execution:measurement-procedure}
 
-In order to measure the power of the beam, the power meter as documented in Table \ref{tab:equipment} and depicted in Figure \ref{fig:execution:aperture} is used. The photodiode sensor needs to be connected to the console via cable and placed such that it is hit by the laser beam. For all measurements described in the subsequent sections, the relative measurement mode is activated by pressing the "$\Delta$" button. While the range is always set to automatic mode, the wavelength is set manually to either $\SI{1030}{\nm}$ for the infrared laser or $\SI{515}{\nm}$ for the frequency-doubled laser, which can be achieved by navigating the menu using the arrow and "OK" buttons. It should be noted here that setting the wavelength is merely used for calculating the power - the power meter does not filter unrelated wavelengths.
+In order to measure the power of the beam, the power meter as documented in Table \ref{tab:equipment} and depicted in Figure \ref{fig:execution:powermeter} is used. The photodiode sensor needs to be connected to the console via cable and placed such that it is hit by the laser beam. For all measurements described in the subsequent sections, the relative measurement mode is activated by pressing the "$\Delta$" button. While the range is always set to automatic mode, the wavelength is set manually to either $\SI{1030}{\nm}$ for the infrared laser or $\SI{515}{\nm}$ for the frequency-doubled laser, which can be achieved by navigating the menu using the arrow and "OK" buttons. It should be noted here that setting the wavelength is merely used for calculating the power - the power meter does not filter unrelated wavelengths.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\textwidth]{graphics/power-meter.png}
     \caption{Power meter consisting of console and sensor.}
-    \label{fig:execution:powermter}
+    \label{fig:execution:powermeter}
 \end{figure}
 
 For the grating spectrometer, which needs to be set up as described in Section \ref{sec:execution:beam-positioning}, measurement needs to be started by clicking the "Start" button in the bottom right corner. The view of the measured spectrum is updated in realtime and can be zoomed in by clicking the magnifying glass button or reset via the crosshair button, which are both located in the bottom right corner of the user interface.
@@ -111,7 +111,7 @@ In order to investigate iodine absorbance, the iodine cell as described in Table
 
 Additionally, the iodine cell is connected to two heating elements connected to the temperature controller shown in Figure \ref{fig:setup:temperature-controller}. After activating the controller, it becomes obvious that at approximate room temperature of \SI{23}{\celsius} the temperature displayed is \SI{29.6}{\celsius}, resulting in an approximate shift of \SI{7}{\celsius} to be taken into account for future considerations. Given these circumstances as well as the specified uncertainty of the temperature controller of $\pm \SI{0.5}{\celsius}$ according to Table \ref{tab:equipment}, the temperature readings are decreased by \SI{7}{\celsius} and equipped with a combined uncertainty of $\pm \SI{3}{\celsius}$.
 
-Analogous to the procedure described in Section \ref{sec:execution:shg-characterization}, the spectra are recorded and exported for a single-pass configuration at three temperatures in the range of \SI{20}{\celsius} to \SI{60}{\celsius}. The corresponding data is shown in tables \ref{tab:execution:iodine:single:1} to \ref{tab:execution:iodine:single:3}. Additionally, at approximately \SI{60}{\celsius} the spectrum is recorded for the triple-pass configuration. The corresponding data is shown in Table \ref{tab:execution:iodine:triple}.
+Analogous to the procedure described in Section \ref{sec:execution:shg-characterization}, the spectra are recorded and exported for a single-pass configuration at three temperatures in the range of \SI{20}{\celsius} to \SI{60}{\celsius}. The corresponding data is shown in tables \ref{tab:execution:iodine:single:1} to \ref{tab:execution:iodine:single:3}. Additionally, at approximately \SI{60}{\celsius} the spectrum is recorded for the triple-pass configuration. The corresponding data is shown in Table \ref{tab:execution:iodine:triple}. For all measurements, an averaging setting of $100$ is applied.
 
 \begin{figure}[H]
     \centering
@@ -190,7 +190,7 @@ Analogous to the procedure described in Section \ref{sec:execution:shg-character
 \subsection{Iodine Cell Dimensions}
 \label{sec:execution:iodine-cell-dimensions}
 
-Using the set square specified in Table \ref{tab:equipment}, the dimensions of the iodine cell are measured. Given a slant-cut cylindrical cell such that a cross-section along the axis is trapezoid-shaped, the longer base is measured to be of length $L_l = \SI{98(2)}{\mm}$ and the shorter base of length $L_s = \SI{90(2)}{\mm}$ respectively. The uncertainties specified are a suitably chosen combined uncertainty consisting of inaccuracies inherent to the manufacturing of the set square as well as parallax effects and subjective reading uncertainties. Both $L_l$ and $L_s$ consider the thickness of the slant areas and describe the shortest and longest possible path in pure iodine gas respectively.
+Using the set square specified in Table \ref{tab:equipment}, the dimensions of the iodine cell are measured. Given a slant-cut cylindrical cell such that a cross-section along the axis is trapezoid-shaped, the longer base is measured to be of length $l_l = \SI{98(2)}{\mm}$ and the shorter base of length $l_s = \SI{90(2)}{\mm}$ respectively. The uncertainties specified are a suitably chosen combined uncertainty consisting of inaccuracies inherent to the manufacturing of the set square as well as parallax effects and subjective reading uncertainties. Both $l_l$ and $l_s$ consider the thickness of the slant areas and describe the shortest and longest possible path in pure iodine gas respectively.
 
 
 

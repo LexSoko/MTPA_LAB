@@ -4,8 +4,82 @@
 The evaluation is created with the scripting language \verb|Python| \cite{PYTHON}.
 The Python libraries, \verb|numpy| \cite{harris2020array}, \verb|pandas| \cite{reback2020pandas}, \verb|scipy| \cite{2020SciPy-NMeth} and \verb|matplotlib| \cite{Hunter:2007}, are used for statistical calculation operations, reading and processing data and creating plots.
 Exact function names that are used to calculate measured variables or fit parameters are specified in the further evaluation.
-Furthermore, the library \verb|uncertainties| \cite{UN} is used for any uncertainty propagation (unless otherwise specified), as this is based on the principle of the maximum uncertainty method Eq. \ref{equ:groestunsicherheit} is based.
+Furthermore, the library \verb|uncertainties| \cite{UN} is used for any uncertainty propagation (unless otherwise specified), as this is based on the principle of the maximum uncertainty method as described in Equation \ref{equ:groestunsicherheit}.
 \subsection{Laser Source Characterization}
 
 
 \subsection{SHG Characterization}
+
+\subsection{Iodine Absorbance}
+\label{sec:evaluation:iodine-absorbance}
+
+Given the transmitted intensities documented in tables \ref{tab:execution:iodine:single:1} to \ref{tab:execution:iodine:triple}, they can be plotted as a function of the respective wavelengths $\lambda$ as shown in Figure \ref{fig:evaluation:transmission}.
+
+Using Equation \ref{eq:fundamentals:absorbance}, the absorbance $A$ can be calculated from the obtained transmission spectra. For the different configurations, the resulting absorbance $A$ as a function of the wavelength $\lambda$ is shown in figures \ref{fig:evaluation:absorbance:single:1} to \ref{fig:evaluation:absorbance:triple}. In order to make absorption more visible, a Savitzky–Golay filter using \textit{scipy.signal.savgol\_filter} with a window length of $15$ and polynomial order of $1$ are applied to the plotted absorbance. Furthermore, in order to make it easier to identify expected absorption peaks in the recorded absorbance the molar absorption coefficient $\varepsilon$ - which is used later for calculating the concentration $c$ of iodine - is plotted on a second axis. Using Equation \ref{eq:fundamentals:absorptivity}, the absorption coefficient $\varepsilon$ is obtained from the absorption cross-section $\sigma$ taken from related literature \cite{Iodine}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/transmission.png}
+    \caption{Transmission spectra without iodine as well as for single-pass and triple-pass configurations.\\
+        $I_0$ = Intensity without iodine, $I_t$ = Intensity transmitted through iodine}
+    \label{fig:evaluation:transmission}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/absorbance-25.png}
+    \caption{Absorbance and used molar absorption coefficient as functions of wavelength.\\
+        $A$ = Absorbance, $\varepsilon$ = Molar absorption coefficient, $\lambda$ = Wavelength}
+    \label{fig:evaluation:absorbance:single:1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/absorbance-42.png}
+    \caption{Absorbance and used molar absorption coefficient as functions of wavelength.\\
+        $A$ = Absorbance, $\varepsilon$ = Molar absorption coefficient, $\lambda$ = Wavelength}
+    \label{fig:evaluation:absorbance:single:2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/absorbance-60.png}
+    \caption{Absorbance and used molar absorption coefficient as functions of wavelength.\\
+        $A$ = Absorbance, $\varepsilon$ = Molar absorption coefficient, $\lambda$ = Wavelength}
+    \label{fig:evaluation:absorbance:single:3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/absorbance-triple.png}
+    \caption{Absorbance and used molar absorption coefficient as functions of wavelength.\\
+        $A$ = Absorbance, $\varepsilon$ = Molar absorption coefficient, $\lambda$ = Wavelength}
+    \label{fig:evaluation:absorbance:triple}
+\end{figure}
+
+\subsection{Iodine Absorbance}
+\label{sec:evaluation:iodine-concentration}
+
+Using Equation \ref{eq:fundamentals:beer} as well as the absorbance $A$ and molar absorption coefficient $\varepsilon$ obtained in Section \ref{sec:evaluation:iodine-absorbance}, the concentration $c$ of molecular iodine in the cell can be calculated.
+For this, the effective path-length $l$ of the laser beam passing through gaseous iodine is required. Given the bases $l_l = \SI{98(2)}{\mm}$ and $l_s = \SI{90(2)}{\mm}$, the effective length of a single pass can be assumed to be $l = \SI{94(6)}{\mm}$, such that the uncertainty covers even extreme alignment conditions.
+
+As further discussed in Section \ref{sec:discussion}, the spectra shown in the previous section suffer from various flaws, most prominent being the fact that negative absorbance $A$ due to intensity shifts created by changing the configuration of the setup is physically meaningless. For this reason it is safe to assume that the uncertainty of the spectrometer as documented in Table \ref{tab:equipment} is negligible compared to other uncertainties introduced due to imprecise experimental handling, for which a combined uncertainty $\Delta A = 0.1$ is used for further calculations.
+
+Regarding the uncertainty of the molar absorption coefficient $\varepsilon$ it needs to be considered that the reference spectrum taken from literature \cite{Iodine} shows very distinctive absorption peaks compared to the absorbance $A$ acquired in the course of the present work. This leads to a combined uncertainty $\Delta \varepsilon = \SI{100}{\L\per\mol\per\cm}$ of approximately a peak height in the region of $\lambda = \SI{508}{\nm}$ to $\lambda = \SI{511}{\nm}$ being considered adequate.
+
+Propagating the various uncertainties as discussed, Equation \ref{eq:fundamentals:beer} is used to calculate the concentration for all wavelengths in the range of $\lambda = \SI{508}{\nm}$ to $\lambda = \SI{511}{\nm}$. The final concentration is calculated as an arithmetic mean from this values, which yields the concentrations of iodine for various configurations as shown in Table \ref{tab:evaluation:concentration}. The plausibility of these values are further discussed in Section \ref{sec:discussion}.
+
+\begin{table}[H]
+    \centering
+    \caption{Intensity spectrum for the infrared laser. \\
+    $L \pm \Delta L$ = Effective total length, $T \pm \Delta T$ = Temperature, $c \pm \Delta c$ = Concentration}
+    \label{tab:evaluation:concentration}
+    \begin{tabular}{cccccc}
+    \hline
+    $L$ / mm & $\Delta L$ / mm & $T$ / \si{\celsius} & $\Delta T$ / \si{\celsius} & $c$ / \si{\m\mol\per\m^3} & $\Delta c$ / \si{\m\mol\per\m^3} \\ \hline
+    94 & 6 & 23 & 3 & 0.6 & 1.2 \\
+    94 & 6 & 35 & 3 & 5.3 & 1.2 \\
+    94 & 6 & 53 & 3 & 10.6 & 1.4 \\
+    192 & 18 & 53 & 3 & 22.1 & 1.5 \\ \hline
+    \end{tabular}
+\end{table}
