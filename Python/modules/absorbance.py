@@ -75,6 +75,8 @@ epsilon = N_A * literature["sigma"] / np.log(10) / 1e3 # L / mol / cm
 
 for title, _, image, _, _, data in iodine:
     plt.figure(figsize=(9, 3.5))
+    for l in [508.79, 509.62, 510.53]:
+        plt.axvline(l, color="orange", label="Peak match")
     absorbance = -np.log10(data["I"]/reference[-1]["I"])
     absorbance = sig.savgol_filter(absorbance, 15, 1)
     l1 = plt.plot(data["lambda"], absorbance, label=r"$A$" + f" ({title})")
@@ -88,6 +90,7 @@ for title, _, image, _, _, data in iodine:
     twin1.set_ylabel(r"$\epsilon$ / L mol$^{-1}$ cm$^{-1}$")
     plt.tight_layout()
     plt.savefig(image, dpi=300)
+
 low = 508
 up = 511
 
