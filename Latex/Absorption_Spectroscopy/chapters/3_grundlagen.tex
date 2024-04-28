@@ -67,24 +67,32 @@
     While SHG is typically prohibited in media with inversion symmetry, exceptions exist, such as in non-centrosymmetric crystals. 
     Achieving efficient SHG often requires intense pulsed laser beams passing through large crystals with precise alignment for phase matching.
 
-\subsection{Iodine Absorption}
+\subsection{Iodine Absorption \& Concentration}
     % Cover the absorption properties of iodine, including rotation, vibration, and temperature dependence.
     % Explain natural linewidth and temperature broadening effects.
-    
+
+Molecular iodine, which in the experiment described by the present document is examined in the gas phase as a diatomic molecule, exhibits absorption properties in the visible spectral range. These absorption properties, on one hand, arise due to the vibrational and rotational structure and the corresponding degrees of freedom of such molecules. On the other hand, electronic state transitions from ground states to excited states enable further absorption of specific wavelengths in the visible range.
+
+The absorption lines apparent in the absorption spectrum are expected to be slim and narrowly centered around the characteristic wavelengths corresponding to valid state transitions. There are a number of effects that lead to the broadening of these spectral lines, most importantly the intrinsic natural broadening arising from the finite lifetime of excited states. A second important effect is called temperature broadening, which results from the thermal motion of particles due to the Doppler effects. The latter effect only becomes apparent at high temperatures of the sample however.
+
+The decadic absorbance $A$ is described by
 \begin{equation}
     \label{eq:fundamentals:absorbance}
-    A = -\log_{10}\left(\frac{I_t}{I_0}\right)
+    A = \log_{10}\left(\frac{I_0}{I_t}\right) ,
 \end{equation}
-
-\begin{equation}
-    \label{eq:fundamentals:absorptivity}
-    A = -\log_{10}\left(\frac{I_t}{I_0}\right)
-\end{equation}
-
+where $I_0$ is the measured laser intensity without iodine and $I_t$ is the intensity transmitted by the iodine. For small molar concentrations $c$, the Lambert-Beer relation relates the absorbance $A$ to the effective interaction length $l$ of the laser beam with the iodine and the molecular absorption coefficient $\varepsilon$ as follows.
 \begin{equation}
     \label{eq:fundamentals:beer}
-    A = -\log_{10}\left(\frac{I_t}{I_0}\right)
+    A = l \cdot c \cdot \varepsilon
 \end{equation}
+
+The absorption cross-section $\sigma$ of iodine, which is a measure for the probability of an absorption process, commonly denoted in units of \si{\cm\squared\per\molecule} and available in scientific literature such as \cite{Iodine}, can be used to obtain the molecular absorption coefficient $\varepsilon$ via the relation
+\begin{equation}
+    \label{eq:fundamentals:absorptivity}
+    \sigma = \frac{\ln(10) \cdot 10^3}{N_A} \cdot \varepsilon ,
+\end{equation}
+where $N_A$ is the Avogadro Constant. The molecular absorption coefficient is commonly specified in units of \si{\liter\per\mol\per\cm} and opposed to the absorbance $A$ uses $e$ as logarithmic base, explaining the need for the term $ln(10) \cdot 10^3$ in Equation \ref{eq:fundamentals:absorptivity} due to base and unit conversion.
+
 
 \subsection{Grating Spectrometer}
     % Briefly mention grating spectrometers and their role in analyzing laser spectra.
