@@ -1,10 +1,20 @@
 %************AUSWERTUNG****************
 \section{Evaluation}
 \label{sec:evaluation}
-The evaluation is created with the scripting language \verb|Python| \cite{PYTHON}.
-The Python libraries, \verb|numpy| \cite{harris2020array}, \verb|pandas| \cite{reback2020pandas}, \verb|scipy| \cite{2020SciPy-NMeth} and \verb|matplotlib| \cite{Hunter:2007}, are used for statistical calculation operations, reading and processing data and creating plots.
-Exact function names that are used to calculate measured variables or fit parameters are specified in the further evaluation.
-Furthermore, the library \verb|uncertainties| \cite{UN} is used for any uncertainty propagation (unless otherwise specified), as this is based on the principle of the maximum uncertainty method as described in Equation \ref{equ:groestunsicherheit}.
+
+For evaluation purposes, the scripting language \verb|Python| \cite{PYTHON} is utilized.
+The Python libraries, \verb|numpy| \cite{harris2020array}, \verb|pandas| \cite{reback2020pandas}, \verb|scipy| \cite{2020SciPy-NMeth} and \verb|matplotlib| \cite{Hunter:2007} are used for statistical calculation operations, reading and processing data and creating plots.
+
+Unless specified otherwise, the maximum uncertainty method according to Equation \ref{equ:groestunsicherheit} \cite{MMETH} is used for all uncertainty calculations.
+For this purpose, the total differential of the outgoing equation is formed and the absolute values of the summands are multiplied by the uncertainty determined.
+Statistical evaluations are subject to a statistical uncertainty according to the Student-t distribution.
+\begin{equation}
+    \varDelta f = \biggl| \frac{\partial f}{\partial x_{1}} \cdot \varDelta x_{1} \biggl| + \biggl| \frac{\partial f}{\partial x_{2}} \cdot \varDelta x_{2} \biggl| + .... + \biggl| \frac{\partial f}{\partial x_{n}} \cdot \varDelta x_{n} \biggl|
+    \label{equ:groestunsicherheit}
+\end{equation}
+
+In the present evaluation, the library \verb|uncertainties| \cite{UN} is used for calculating any uncertainty propagation, as this is based on the principle of the maximum uncertainty method as described in Equation \ref{equ:groestunsicherheit}.
+
 \subsection{Laser Source Characterization}
 
 
@@ -15,7 +25,9 @@ Furthermore, the library \verb|uncertainties| \cite{UN} is used for any uncertai
 
 Given the transmitted intensities documented in tables \ref{tab:execution:iodine:single:1} to \ref{tab:execution:iodine:triple}, they can be plotted as a function of the respective wavelengths $\lambda$ as shown in Figure \ref{fig:evaluation:transmission}.
 
-Using Equation \ref{eq:fundamentals:absorbance}, the absorbance $A$ can be calculated from the obtained transmission spectra. For the different configurations, the resulting absorbance $A$ as a function of the wavelength $\lambda$ is shown in figures \ref{fig:evaluation:absorbance:single:1} to \ref{fig:evaluation:absorbance:triple}. In order to make absorption more visible, a Savitzky–Golay filter using \textit{scipy.signal.savgol\_filter} with a window length of $15$ and polynomial order of $1$ are applied to the plotted absorbance. Furthermore, in order to make it easier to identify expected absorption peaks in the recorded absorbance the molar absorption coefficient $\varepsilon$ - which is used later for calculating the concentration $c$ of iodine - is plotted on a second axis. Using Equation \ref{eq:fundamentals:absorptivity}, the absorption coefficient $\varepsilon$ is obtained from the absorption cross-section $\sigma$ taken from related literature \cite{Iodine}.
+Using Equation \ref{eq:fundamentals:absorbance}, the absorbance $A$ can be calculated from the obtained transmission spectra. For the different configurations, the resulting absorbance $A$ as a function of the wavelength $\lambda$ is shown in figures \ref{fig:evaluation:absorbance:single:1} to \ref{fig:evaluation:absorbance:triple}. In order to make absorption more visible, a Savitzky–Golay filter using \verb|scipy.signal.savgol_filter| with a window length of $15$ and polynomial order of $1$ are applied to the plotted absorbance. Furthermore, in order to make it easier to identify expected absorption peaks in the recorded absorbance the molar absorption coefficient $\varepsilon$ - which is used later for calculating the concentration $c$ of iodine - is plotted on a second axis.
+
+Using Equation \ref{eq:fundamentals:absorptivity}, the absorption coefficient $\varepsilon$ is obtained from the absorption cross-section $\sigma$ taken from related literature \cite{Iodine}. In the area of $\lambda = \SI{508}{\nm}$ to $\lambda = \SI{511}{\nm}$ orange vertical lines relate the peaks of the measured absorbance $A$ to the peaks of the literature spectrum.
 
 \begin{figure}[H]
     \centering
@@ -83,3 +95,5 @@ Propagating the various uncertainties as discussed, Equation \ref{eq:fundamental
     192 & 18 & 53 & 3 & 22.1 & 1.5 \\ \hline
     \end{tabular}
 \end{table}
+
+\newpage
