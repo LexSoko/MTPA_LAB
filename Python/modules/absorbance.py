@@ -114,7 +114,7 @@ print(epsilon)
 # exit()
 
 for title, _, image, l, _, data in iodine:
-    A = unp.uarray(-np.log10(data["I"]/reference[-1]["I"]), 0.1)
+    A = unp.uarray(-np.log10(data["I"]/reference[-1]["I"]), 0.2)
     c = A / (epsilon * l)
 
     print(title)
