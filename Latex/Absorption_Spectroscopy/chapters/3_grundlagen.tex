@@ -78,16 +78,16 @@
     % Cover the absorption properties of iodine, including rotation, vibration, and temperature dependence.
     % Explain natural linewidth and temperature broadening effects.
 
-Molecular iodine, which in the experiment described by the present document is examined in the gas phase as a diatomic molecule, exhibits absorption properties in the visible spectral range. These absorption properties, on one hand, arise due to the vibrational and rotational structure and the corresponding degrees of freedom of such molecules. On the other hand, electronic state transitions from ground states to excited states enable further absorption of specific wavelengths in the visible range.
+Molecular iodine, which in the experiment described by the present document is examined in the gas phase as a diatomic molecule, exhibits absorption properties in the visible spectral range. These absorption properties, on one hand, arise due to the vibrational and rotational structure and the corresponding degrees of freedom of such molecules. On the other hand, electronic state transitions from ground states to excited states enable further absorption of specific wavelengths in the visible range \cite{demtroder2014laser}.
 
-The absorption lines apparent in the absorption spectrum are expected to be slim and narrowly centered around the characteristic wavelengths corresponding to valid state transitions. There are a number of effects that lead to the broadening of these spectral lines, most importantly the intrinsic natural broadening arising from the finite lifetime of excited states. A second important effect is called temperature broadening, which results from the thermal motion of particles due to the Doppler effects. The latter effect only becomes apparent at high temperatures of the sample however.
+The absorption lines apparent in the absorption spectrum are expected to be slim and narrowly centered around the characteristic wavelengths corresponding to valid state transitions. There are a number of effects that lead to the broadening of these spectral lines, most importantly the intrinsic natural broadening arising from the finite lifetime of excited states. A second important effect is called temperature broadening, which results from the thermal motion of particles due to the Doppler effects. The latter effect only becomes apparent at high temperatures of the sample however \cite{demtroder2014laser}.
 
 The decadic absorbance $A$ is described by
 \begin{equation}
     \label{eq:fundamentals:absorbance}
     A = \log_{10}\left(\frac{I_0}{I_t}\right) ,
 \end{equation}
-where $I_0$ is the measured laser intensity without iodine and $I_t$ is the intensity transmitted by the iodine. For small molar concentrations $c$, the Lambert-Beer relation relates the absorbance $A$ to the effective interaction length $l$ of the laser beam with the iodine and the molecular absorption coefficient $\varepsilon$ as follows.
+where $I_0$ is the measured laser intensity without iodine and $I_t$ is the intensity transmitted by the iodine \cite{demtroder2014laser}. For small molar concentrations $c$, the Lambert-Beer law relates the absorbance $A$ to the effective interaction length $l$ of the laser beam with the iodine and the molecular absorption coefficient $\varepsilon$ as follows \cite{attenuation}.
 \begin{equation}
     \label{eq:fundamentals:beer}
     A = l \cdot c \cdot \varepsilon
@@ -98,25 +98,36 @@ The absorption cross-section $\sigma$ of iodine, which is a measure for the prob
     \label{eq:fundamentals:absorptivity}
     \sigma = \frac{\ln(10) \cdot 10^3}{N_A} \cdot \varepsilon ,
 \end{equation}
-where $N_A$ is the Avogadro Constant. The molecular absorption coefficient is commonly specified in units of \si{\liter\per\mol\per\cm} and opposed to the absorbance $A$ uses $e$ as logarithmic base, explaining the need for the term $ln(10) \cdot 10^3$ in Equation \ref{eq:fundamentals:absorptivity} due to base and unit conversion.
+where $N_A$ is the Avogadro Constant \cite{attenuation}. The molecular absorption coefficient is commonly specified in units of \si{\liter\per\mol\per\cm} and - contrary to the absorbance $A$ - uses $e$ as logarithmic base, explaining the need for the term $ln(10) \cdot 10^3$ in Equation \ref{eq:fundamentals:absorptivity} due to base and unit conversion.
 
 
 \subsection{Grating Spectrometer}
-    % Briefly mention grating spectrometers and their role in analyzing laser spectra.
-    % Explain how diffraction gratings disperse light for spectral measurements.
+% Briefly mention grating spectrometers and their role in analyzing laser spectra.
+% Explain how diffraction gratings disperse light for spectral measurements.
 
+Spectrometers in general are optical instruments that create images which are laterally separated for different wavelengths $\lambda$ of the incident radiation. In the case of a grating spectrometer, as opposed to spectral dispersion used in a prism spectrometer, the lateral dispersion is due to diffraction plane or concave reflection gratings \cite{demtroder2014laser}.
 
+In a grating spectrometer as shown in Figure \ref{fig:fundamentals:spectrometer}, the light source illuminates the entrance slit $S_1$, which is in the focal plane of a spherical mirror $M_1$. The collimated, parallel light is reflected by $M_1$ onto a reflection grating consisting of many straight grooves parallel to the entrance slit. Highly reflective metal or dielectric coating on the surface of the grating is used to reflect the light towards a second spherical mirror $M_2$, which in turn focuses it onto the exit slit $S_2$ or onto a photographic plate in the focal plane of $M_2$ \cite{demtroder2014laser}.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{graphics/spectrometer.png}
+    \caption{Schematic structure of a grating spectrometer \cite{demtroder2014laser}.}
+    \label{fig:fundamentals:spectrometer}
+\end{figure}
 
-
-\subsection{Uncertainty analysis}
-\label{sec:unsichi}
-
-In the entire protocol, unless otherwise specified, the maximum uncertainty method according to Eq.\ref{equ:groestunsicherheit} \cite{MMETH} is used for all error calculations.
-For this purpose, the total differential of the outgoing equation is formed and the absolute values of the summands are multiplied by the uncertainty determined.
-All statistical evaluations are subject to a statistical uncertainty according to the Student's t-distribution.
+Considering the coherently illuminated grooves on the grating as individual sources of radiation, each of them diffracting the incident light into a larger range around the direction nof geometrical reflection, the resulting outgoing intensity is subject to destructive and constructive interference, where for the latter the grating equation is
 \begin{equation}
-    \varDelta f = \biggl| \frac{\partial f}{\partial x_{1}} \cdot \varDelta x_{1} \biggl| + \biggl| \frac{\partial f}{\partial x_{2}} \cdot \varDelta x_{2} \biggl| + .... + \biggl| \frac{\partial f}{\partial x_{n}} \cdot \varDelta x_{n} \biggl|
-    \label{equ:groestunsicherheit}
+    \label{eq:fundamentals:grating}
+    2 d \cdot \sin(\alpha) = m \lambda ,
 \end{equation}
+where $d$ is the width of each groove and $\alpha$ is the angle of the $m$-th order maximum at incident wavelength $\lambda$ \cite{demtroder2014laser}. From Equation \ref{eq:fundamentals:grating} follows the spectral resolving power as
+\begin{equation}
+    \label{eq:fundamentals:resolving}
+    R = \frac{\lambda}{\Delta \lambda} = m N ,
+\end{equation}
+for diffraction order $m$ with the total number $N$ of illuminated grooves \cite{demtroder2014laser}.
+
+While using a prism spectrometer would have the advantage of unambiguous assignment of wavelengths $\lambda$, which is not the case for grating spectrometers due to histogram-like binning of wavelengths, the former offer only moderate spectral resolution compared to grating spectrometers. Also, since the current experiment involves infrared radiation, for which coated mirrors and gratings exhibit especially high reflectivity, grating spectrometers are preferred over prism spectrometers in such scenarios \cite{demtroder2014laser}.
+
 \newpage
