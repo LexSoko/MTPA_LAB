@@ -38,22 +38,26 @@
     Understanding the interplay between absorption, stimulated emission, and population inversion is crucial for the design and operation of laser systems. 
     By harnessing stimulated emission and achieving population inversion, lasers can amplify light coherently, enabling applications ranging from scientific research to industrial manufacturing.
     \monofig{width = 0.5\textwidth}{Stim_Emission.png}{ Stimulated Emission  \cite{Laser_cav} }{fig:energy_diagram}
-\newpage
+
 \subsection{Pulsed Lasers (Mode Locking)}
     % Describe pulsed lasers, their advantages, and limitations.
     % Discuss the concept of time-bandwidth limit and its relevance.
-    Mode locking in optics is a technique used to generate ultra-short pulses of light in lasers, typically on the scale of picoseconds or femtoseconds. 
-    By inducing a fixed phase relationship between the longitudinal modes of the laser's resonant cavity, constructive interference between these modes produces synchronized pulses. 
+    In order to generate ultra-short pulses of light in the range of picoseconds or femtoseconds, an optics technique called Mode Locking is used.
+    If the length of the laser's optical cavity is a multiple of the laser's fundamental frequency standing waves or modes arise. 
+    By fixing the phase relationship between the longetudinal modes, constructive inteference between the standing waves is archieved, which produces synchronized pulses.   
     This method, known as mode locking, alters the behavior of the laser's modes, causing them to periodically constructively interfere and emit intense bursts of light. 
     The pulse duration is determined by the number of locked modes and their frequency separation, governed by the laser's spectral width. 
-    Mode locking enables precise control over pulse durations, with applications ranging from scientific research to industrial and medical fields.
 
+    
 \subsection{Second Harmonic Generation (SHG)}
     % Introduce SHG as a nonlinear optical process.
     % Explain how crystals generate light at twice the input frequency.
     % Discuss the importance of phase matching.
-    Second-harmonic generation (SHG), or frequency doubling, is a fundamental nonlinear optical process where two photons with the same frequency interact in a nonlinear material, combining to generate a new photon with double the energy.
-    This results in a photon with twice the frequency and half the wavelength of the initial photons,
+    %Second-harmonic generation (SHG), or frequency doubling, is a fundamental nonlinear optical process where two photons with the same frequency interact in a nonlinear material, combining to generate a new photon with double the energy.
+    %This results in a photon with twice the frequency and half the wavelength of the initial photons,
+    Second-harmonic generation (SHG) is a nonliniar optical process ,which is characterized by the second-order nonliniar susceptibility $\chi^{2}$ of a optical medium.
+    In systems in which $\chi^{2}$ is non vanishing, two photons with the same frequency interact to form a photon with double the frequency and half the wavelength.
+    To archieve high conversion rates the phase velocities of the incident wave and SH wave must be equal.
     \begin{wrapfigure}[7]{r}[0cm]{0.4\textwidth}
         \centering
         \vspace{-\normalbaselineskip}
@@ -63,9 +67,12 @@
         
         \label{fig:shg:basic}
     \end{wrapfigure}
-    conserving excitation coherence. SHG is utilized extensively, particularly in doubling laser frequencies, and is governed by the second-order nonlinear susceptibility of the medium. 
-    While SHG is typically prohibited in media with inversion symmetry, exceptions exist, such as in non-centrosymmetric crystals. 
-    Achieving efficient SHG often requires intense pulsed laser beams passing through large crystals with precise alignment for phase matching.
+    In negative birefringent uniaxial crystals this is done by rotating the crystal in a certain direction where the extraordinary refractive index $n(2\omega)$ of the SH wave is equal to the ordinary refractive index $n(\omega)$ of the fundamental wavelength.
+    The polarization direction of the SH wave is therefore orthogonal to that of the fundamental wave.
+    For positive birefringent uniaxial crystals it is switched which means that the SH wave travels as ordinary wave outside the medium.
+    %conserving excitation coherence. SHG is utilized extensively, particularly in doubling laser frequencies, and is governed by the second-order nonlinear susceptibility of the medium. 
+    %While SHG is typically prohibited in media with inversion symmetry, exceptions exist, such as in non-centrosymmetric crystals. 
+    %Achieving efficient SHG often requires intense pulsed laser beams passing through large crystals with precise alignment for phase matching.
 
 \subsection{Iodine Absorption \& Concentration}
     % Cover the absorption properties of iodine, including rotation, vibration, and temperature dependence.

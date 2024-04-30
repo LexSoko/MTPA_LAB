@@ -144,3 +144,5 @@ dmypy.json
 *.synctex.gz
 *.out
 *.xcf
+
+try.py

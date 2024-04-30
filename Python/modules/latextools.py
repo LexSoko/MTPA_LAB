@@ -70,4 +70,4 @@ def latextable_custom(width: int , height: int, format: str):
     print(table_string)
     return table_string
 
-latextable_custom(2,9,"c")
+#latextable_custom(2,9,"c")

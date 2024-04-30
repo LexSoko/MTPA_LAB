@@ -28,6 +28,7 @@
 \usepackage{wrapfig}
 \usepackage[justification=centering]{caption}
 \usepackage{textcomp}
+\usepackage{subcaption}
 
 \DeclareSIUnit\molecule{molecule}
 
@@ -42,6 +43,26 @@
 \addbibresource{literatur.bib} %Literatur-Resourcen
 %\setlength{\headheight}{0.0pt} % macht zwar headheight warnings aber dafür nutz latex die seitengröße besser aus.
 \pagestyle{scrheadings}
+\newcommand{\duofigcom}[6]{
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.9\textwidth}
+            \includegraphics[width=\textwidth]{#1}
+            \caption{}
+            \label{#2}
+        \end{subfigure}
+        \vspace{1cm}
+        \begin{subfigure}{0.9\textwidth}
+            \includegraphics[width=\textwidth]{#3}
+            \caption{}
+            \label{#4}
+        \end{subfigure}
+        \caption{
+            #5
+            }
+        \label{#6}
+    \end{figure}
+}
 \newcommand{\subf}[2]{
     {
         \begin{tabular}[c]{@{}c@{}}
