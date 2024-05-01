@@ -5,41 +5,29 @@
 \subsection{Laser Principles}
     % Explain the basic principles of lasers, including stimulated emission, population inversion, and coherence.
     % Discuss their importance in scientific and technological applications.
-    \begin{wrapfigure}[16]{r}[0cm]{0.4\textwidth}
-        \centering
-        \vspace{-\normalbaselineskip}
-        \includegraphics[width=0.4\textwidth]{Laser_Cavity.png}
-        \vspace{-10pt}
-        \caption{ 1. Gain medium , 2.Laser pumping energy, 3. High reflector , 4. Output coupler , 5. Laser Beam  \cite{Laser_cav} }
-        
-        \label{fig:lasercav}
-    \end{wrapfigure}
     
-    A laser operates by amplifying light through stimulated emission in a gain medium, fueled by an external energy source. 
-    Optical feedback, often facilitated by mirrors within an optical cavity, promotes coherence. 
-    Variations in laser design exist, but typically involve an output coupler and elements for beam manipulation. 
-    These devices emit coherent light with controlled properties, akin to electronic oscillators. \\
     \subsubsection{Stimulated emission}
-    Stimulated emission is a fundamental process in laser physics, characterized by the emission of a photon from an already excited atom when stimulated by the presence of a photon with frequency $\nu_{12}$ corresponding to the energy gap $\Delta E$ of the excited state to ground state transition. 
+    Stimulated Emision occurs when an an already excited photon is emitted by interaction with an photon with equal energy to that of the excited state to the ground state energy gap $\Delta E$ .
     Mathematically, the rate of stimulated emission is expressed as proportional to the number of atoms $N_2$ in the excited state and the radiation density of the light. 
-    This relationship is encapsulated by the Einstein coefficients. 
-    Specifically, the probability of a photon causing stimulated emission in a single excited atom is exactly equal to the probability of a photon being absorbed by an atom in the ground state. 
-    This equality holds when the numbers of atoms in the ground and excited states are equal, resulting in a balanced rate of stimulated emission and absorption. \\
-    For a laser to function effectively, the rate of stimulated emission must surpass that of absorption, necessitating a population inversion where $N_2$/$N_1$ > 1. 
+   
+    
+    \begin{wrapfigure}[13]{r}[0cm]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{Stim_Emission.png}
+        
+        \caption[width = 0.1\textwidth]{ Stimulated Emission  \cite{Laser_cav} }
+        \label{fig:energy_diagram}
+    \end{wrapfigure}
+    \noindent The probability of a photon causing stimulated emission is equal to the probability of a photon falling to the groundstate $E_0$.
+    This equality holds when the numbers of atoms in the ground and excited states are equal, resulting in a balanced rate of stimulated emission and absorption.  
+    By means of population  inversion $N_2$/$N_1$ > ,where $N_2$ is the population in the excited state and $N_1$ the population in the ground state, the function of the laser is optimized. 
     In other words, the population of the excited state must exceed that of the ground state. 
-    %\begin{wrapfigure}[13]{l}[0cm]{0.3\textwidth}
-    %    \centering
-    %    \includegraphics[width=0.3\textwidth]{Stim_Emission.png}
-    %    
-    %    \caption[width = 0.1\textwidth]{ Stimulated Emission  \cite{Laser_cav} }
-    %    \label{fig:energy_diagram}
-    %\end{wrapfigure}
-    This condition allows for the production of a continuously increasing number of photons, establishing optical gain within the laser medium.
+    This allows for the production of a continuously increasing number of photons, establishing higher output power of the laser medium.
     Understanding the interplay between absorption, stimulated emission, and population inversion is crucial for the design and operation of laser systems. 
-    By harnessing stimulated emission and achieving population inversion, lasers can amplify light coherently, enabling applications ranging from scientific research to industrial manufacturing.
-    \monofig{width = 0.5\textwidth}{Stim_Emission.png}{ Stimulated Emission  \cite{Laser_cav} }{fig:energy_diagram}
+    By harnessing stimulated emission and achieving population inversion, lasers can produce a coherent lightsource . \cite{Laser_cav}
+    %\monofig{width = 0.5\textwidth}{Stim_Emission.png}{ Stimulated Emission  \cite{Laser_cav} }{fig:energy_diagram}
 
-\subsection{Pulsed Lasers (Mode Locking)}
+\subsubsection{Pulsed Lasers (Mode Locking)}
     % Describe pulsed lasers, their advantages, and limitations.
     % Discuss the concept of time-bandwidth limit and its relevance.
     In order to generate ultra-short pulses of light in the range of picoseconds or femtoseconds, an optics technique called Mode Locking is used.
@@ -57,13 +45,13 @@
     %This results in a photon with twice the frequency and half the wavelength of the initial photons,
     Second-harmonic generation (SHG) is a nonliniar optical process ,which is characterized by the second-order nonliniar susceptibility $\chi^{2}$ of a optical medium.
     In systems in which $\chi^{2}$ is non vanishing, two photons with the same frequency interact to form a photon with double the frequency and half the wavelength.
-    To archieve high conversion rates the phase velocities of the incident wave and SH wave must be equal.
+    To archieve high conversion rates the phase velocities of the incident wave and SH wave must be equal. \cite{demtroder2014laser}
     \begin{wrapfigure}[7]{r}[0cm]{0.4\textwidth}
         \centering
         \vspace{-\normalbaselineskip}
         \includegraphics[width=0.4\textwidth]{shg_schem.png}
         \vspace{-10pt}
-        \caption{Second harmonic generation }
+        \caption{Second harmonic generation \cite{shg}  }
         
         \label{fig:shg:basic}
     \end{wrapfigure}
@@ -106,17 +94,23 @@ where $N_A$ is the Avogadro Constant \cite{attenuation}. The molecular absorptio
 % Explain how diffraction gratings disperse light for spectral measurements.
 
 Spectrometers in general are optical instruments that create images which are laterally separated for different wavelengths $\lambda$ of the incident radiation. In the case of a grating spectrometer, as opposed to spectral dispersion used in a prism spectrometer, the lateral dispersion is due to diffraction plane or concave reflection gratings \cite{demtroder2014laser}.
-
-In a grating spectrometer as shown in Figure \ref{fig:fundamentals:spectrometer}, the light source illuminates the entrance slit $S_1$, which is in the focal plane of a spherical mirror $M_1$. The collimated, parallel light is reflected by $M_1$ onto a reflection grating consisting of many straight grooves parallel to the entrance slit. Highly reflective metal or dielectric coating on the surface of the grating is used to reflect the light towards a second spherical mirror $M_2$, which in turn focuses it onto the exit slit $S_2$ or onto a photographic plate in the focal plane of $M_2$ \cite{demtroder2014laser}.
-
-\begin{figure}[H]
+\begin{wrapfigure}[14]{r}[0cm]{0.4\textwidth}
     \centering
-    \includegraphics[width=0.45\textwidth]{graphics/spectrometer.png}
-    \caption{Schematic structure of a grating spectrometer \cite{demtroder2014laser}.}
+    \includegraphics[width=0.3\textwidth]{graphics/spectrometer.png}
+    
+    \caption[width = 0.1\textwidth]{Schematic structure of a grating spectrometer \cite{demtroder2014laser}.}
     \label{fig:fundamentals:spectrometer}
-\end{figure}
+\end{wrapfigure}
+In a grating spectrometer as shown in Figure \ref{fig:fundamentals:spectrometer}, the light source illuminates the entrance slit $S_1$, which is in the focal plane of a spherical mirror $M_1$. The collimated, parallel light is reflected by $M_1$ onto a reflection grating consisting of many straight grooves parallel to the entrance slit. Highly reflective metal or dielectric coating on the surface of the grating is used to reflect the light towards a second spherical mirror $M_2$,which in turn focuses it onto the exit slit $S_2$ or onto a photographic plate in the focal plane of $M_2$ \cite{demtroder2014laser}.
 
-Considering the coherently illuminated grooves on the grating as individual sources of radiation, each of them diffracting the incident light into a larger range around the direction nof geometrical reflection, the resulting outgoing intensity is subject to destructive and constructive interference, where for the latter the grating equation is
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.45\textwidth]{graphics/spectrometer.png}
+%    \caption{Schematic structure of a grating spectrometer \cite{demtroder2014laser}.}
+%    \label{fig:fundamentals:spectrometer}
+%\end{figure}
+
+\noindent Considering the coherently illuminated grooves on the grating as individual sources of radiation, each of them diffracting the incident light into a larger range around the direction nof geometrical reflection, the resulting outgoing intensity is subject to destructive and constructive interference, where for the latter the grating equation is
 \begin{equation}
     \label{eq:fundamentals:grating}
     2 d \cdot \sin(\alpha) = m \lambda ,

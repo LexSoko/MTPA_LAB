@@ -16,7 +16,7 @@ path_graphics = "C:\\Lab_Master\\MTPA\\MTPA_LAB\\Latex\\Absorption_Spectroscopy\
 
 
 def plot_spectra(path, data ,ax ,label = 'data',x = 'Wavelength', y = 'Intensity',delimiter = '\t'):
-    if type(data) == str:
+    if np.type(data) == str:
         spectra = pd.read_csv(path+data,delimiter= delimiter)
     else:
         spectra = data
@@ -39,6 +39,7 @@ def quick_plot_files(File_split):
         fig.clf()
 gaussian = lambda x,A, mu,sig: A*np.exp(-0.5 * ((x - mu) / sig) ** 2)
 gaussian_u = lambda x,A, mu,sig: A*um.exp(-0.5 * ((x - mu) / sig) ** 2)
+const = lambda x,c: c
 cauchy = lambda x,amp,mu,fhwm: amp *( (fhwm**2)/(fhwm**2 + 4*(x-mu)**2))
 def total_gaussian(x, *params):
     total = np.zeros_like(x)
@@ -60,18 +61,21 @@ def add_functions(x,func,*params):
         total_func += func(x, amplitude, mean, std_dev)
     return total_func
 
-def fit_spectra(data,guesses=None):
+def fit_spectra(data,guesses=None,bounds=None):
     I = data["Intensity"]
     Lamda = data["Wavelength"]
     I = I/max(I)
-    if guesses == None:
+    
+    if type(guesses) == None:
         guesses = []
         peaks, _ = find_peaks(I,width = 2,prominence=0.1)
         guessed_means = Lamda[peaks]
         for amplitude,mean in zip(I[peaks],guessed_means):
             guesses.extend([amplitude,mean,0.1])
         print(guesses)
-    params, error = curve_fit(total_gaussian,Lamda,I,p0=guesses)
+    if bounds == None:
+        bounds = [tuple([-np.inf]*len(guesses)),tuple([np.inf]*len(guesses))]
+    params, error = curve_fit(total_gaussian,Lamda,I,p0=guesses,bounds=bounds)
     params_cauchy, error_cauchy = (0,0)
 
     return params, error,  params_cauchy, error_cauchy
@@ -82,24 +86,40 @@ spectra_IR = pd.read_csv(path_data+"1-blende-offen.txt",delimiter= "\t")
 spectra_both = pd.read_csv(path_data+"2-IR_and_green.txt",delimiter= "\t")
 spectra_ir_shg = pd.read_csv(path_data+"2-only-IR.txt",delimiter= "\t")
 #spectra_green["Intensity"] = signal.filtfilt(b, a, spectra_green["Intensity"])
-guesses_IR=[
-    0.8,1015.73,3.8,
-    0.55,1021,1,
-    0.1,1028,1,
-    0.4,1035,1,
-    0.6,1040,1,
-    0.6,1048,3.8,
-    0.6,1050,1
+
+
+guesses_IR2=[
+    1,1014,2,
+    1,1026,4,
+    1,1037.5,2,
+    1, 1048,2,
             ]
+guesses_green2= [
+    0.5,507.5,0.5,
+    0.5,511,0.5,
+    0.5,514.5,0.5,
+    0.5,518,0.5,
+    0.5,521.5,0.5
+]
+guesses_IR= np.array(guesses_green2)*2
+bound_IR = [
+    (0,guesses_IR2[1]-2,-np.inf,0,guesses_IR2[4]-2,-np.inf,0,guesses_IR2[7]-2,-np.inf,0,guesses_IR2[10]-2,-np.inf),
+    (np.inf,guesses_IR2[1]+2,np.inf,np.inf,guesses_IR2[4]+2,np.inf,np.inf,guesses_IR2[7]+2,np.inf,np.inf,guesses_IR2[10]+2,np.inf)
+]
 guesses_green=[
     0.5, 509, 0.1,
     0.5, 511, 0.1,
     1, 511.495601173, 0.1,
     0.486254133207369, 514.3, 0.1,
     0.1261848527791214, 517.9765395894, 0.1, 
-    0.21993386868209733, 521.442521994, 0.1,
-    0.1, 524, 0.1
     ]
+guesses_green2= [
+    0.127,507.5,4,
+    0.8,511,1,
+    0.47,514.5,1,
+    0.1,518,1,
+    0.2,521.5,1
+]
 #spectra_ir_shg["Intensity"] = signal.savgol_filter(np.abs(spectra_ir_shg["Intensity"] -175*0.174),15,1)
 baseline = np.mean(spectra_ir_shg["Intensity"][int(0.6*len(spectra_ir_shg["Intensity"])):])
 spectra_ir_shg["Intensity"] = np.abs(spectra_ir_shg["Intensity"] -baseline)
@@ -107,11 +127,11 @@ spectra_ir_shg["Intensity"] = np.abs(spectra_ir_shg["Intensity"] -baseline)
 print()
 #plt.plot(spectra_ir_shg["Wavelength"], spectra_ir_shg["Intensity"])
 #plt.show()
-param_IR_G ,errors_IR_G, _ , _  = fit_spectra(spectra_IR,guesses=guesses_IR)
-param_green_G ,errors_green_G, _ , _ = fit_spectra(spectra_green,guesses=guesses_green)
-param_IR_SHG ,errors_IR_SHG, _ , _  = fit_spectra(spectra_ir_shg,guesses=guesses_IR[:-6])
-b = True
-a = False
+param_IR_G ,errors_IR_G, _ , _  = fit_spectra(spectra_IR,guesses=guesses_IR2,bounds=bound_IR)
+param_green_G ,errors_green_G, _ , _ = fit_spectra(spectra_green,guesses=guesses_green2)
+param_IR_SHG ,errors_IR_SHG, _ , _  = fit_spectra(spectra_ir_shg,guesses=guesses_IR)
+b =False
+a = True
 paramsshg = [param_green_G,param_IR_SHG]
 errorsshg = [errors_green_G,errors_IR_SHG]
 spectrashg = [spectra_green,spectra_ir_shg]
@@ -125,7 +145,7 @@ if a:
     
     params_IR_un = unp.uarray(param_IR_G,np.sqrt(np.diag(errors_IR_G)))
     
-    split = np.array(np.split(params_IR_un,7)).T
+    split = np.array(np.split(params_IR_un,len(param_IR_G)//3)).T
     print(f"IR {split} \n")
     I_ir =     np.array(spectra_IR["Intensity"])
     I_ir = I_ir/max(I_ir)
@@ -154,6 +174,7 @@ if a:
     plt.xlabel("$\lambda$ / nm")
     plt.ylabel("I / 1")
     plt.legend()
+    plt.show()
     lt.latextable(pd.DataFrame(split).T,"c")
     #plt.savefig(path_graphics+"IR_fitteddx.pdf",dpi=300)
 
@@ -169,18 +190,18 @@ if b:
         ax_conv.set_ylim(0,1.5)
         #print(np.sum(spectra_green["Intensity"])/(np.sum(spectra_ir_shg["Intensity"])+np.sum(spectra_green["Intensity"])))
         if k == 0:
-            split2 = np.array(np.split(p_un,7)).T
+            split2 = np.array(np.split(p_un,len(p_un)//3)).T
             I_g =      np.array(speck["Intensity"])
         if k == 1:
-            split2 = np.array(np.split(p_un,5)).T
+            split2 = np.array(np.split(p_un,len(p_un)//3)).T
             ax_conv.set_ylim(0,1)
             I_g =      np.array(speck["Intensity"])
         all_params.append(split2)
         #print("mean grean", np.mean(split2[1]))
-        #param_auto_G ,errors_auto_G, _ , _ = fit_spectra(spectra_green)
         
         
         
+        print(p_un)
         
         I_g = I_g/max(I_g)
 
@@ -202,12 +223,14 @@ if b:
         #ax_conv[k].xaxis.set_ticks(np.arange(min(Lambda), max(Lambda)+1, 1))
         ax_conv.legend()
         k +=1
-        #fig_conv.savefig(path_graphics+f"SHG_fitteddx{k}.pdf",dpi=300)
-        #fig_conv.clf()
+        fig_conv.savefig(path_graphics+f"SHG_fitted_better{k}.pdf",dpi=300)
+        fig_conv.clf()
 
     for i in all_params:
         i = pd.DataFrame(i).T
         lt.latextable(i,"c")
+    ratios = all_params[1][1]/all_params[0][1]
+    print(ratios, "ratios")
     print(np.sum(max(spectra_green["Intensity"])*np.array(all_speck[0]))/(np.sum(max(spectra_green["Intensity"])*np.array(all_speck[0]))+ np.sum(max(spectra_ir_shg["Intensity"])*np.array(all_speck[1]))), "speck")
     a1 = un.ufloat(0,0)
     a2 = un.ufloat(0,0)
