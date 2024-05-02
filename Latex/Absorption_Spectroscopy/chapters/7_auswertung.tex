@@ -16,17 +16,17 @@ Statistical evaluations are subject to a statistical uncertainty according to th
 In the present evaluation, the library \verb|uncertainties| \cite{UN} is used for calculating any uncertainty propagation, as this is based on the principle of the maximum uncertainty method as described in Equation \ref{equ:groestunsicherheit}.
 
 \subsection{Laser Source Characterization}
-In order to obtain the central wavelenght and the full width half maximum $FWHM$, the data in Table \ref{tab:execution:infrared-characterization} is fitted using the function \verb|curve_fit|.
-The measured IR spectra is fitted using a sum of multiple gaussian distributions,as seen in Equation \ref{eq:evaluation:fitfunc}.
-For convinience the spectra was devided by the maximum value of the emission lines. 
-
+In order to obtain the central wavelength and the full width half maximum $FWHM$, the data in Table \ref{tab:execution:infrared-characterization} is fitted using the function \verb|curve_fit|.
+The measured IR spectra are fitted using a sum of multiple gaussian distributions,as seen in Equation \ref{eq:evaluation:fitfunc}.
+For convenience, the spectra were divided by the maximum value of the emission lines. 
 \begin{equation}
     G_{comb}(\lambda) = \sum_{p = 1} A_p e^{-\frac{(\lambda - \lambda_p)^{2}}{2 \sigma_{p}^2}}  = \sum_{p = 1} G_p(\lambda)
     \label{eq:evaluation:fitfunc}
 \end{equation}
-Judging by the estimated parameters in Table \ref{tab:evaluation:ir_fitted1} , the emission spectrum of Ytterbium reduces to 7 indiviuall lines resulting in a bimodal structure.
-The resulting function is then normalized by integrating and over the defined space to get a power density.
-Using Equation \ref{eq:evaluation:central} the central wavelenght $\langle \lambda \rangle$ is calculated by integrating over $\lambda G_{comb}(\lambda)$, where $G_{comp}$ is the superposition of gauss distributions. 
+Judging by the estimated parameters in Table \ref{tab:evaluation:ir_fitted1}, the emission spectrum of Ytterbium reduces to 7 individual lines, resulting in a bimodal structure.
+The resulting function is then normalized by integrating over the defined space to get a power density.
+Using Equation \ref{eq:evaluation:central}, the central wavelength $\langle \lambda \rangle$ is calculated by integrating over $\lambda G_{comb}(\lambda)$, where $G_{comp}$ is the superposition of gauss distributions. 
+
 \begin{equation}
     \langle \lambda \rangle = \frac{1}{K} \int_{P}\lambda G_{comp}(\lambda) d \lambda
     \label{eq:evaluation:central}
@@ -38,10 +38,10 @@ Using Equation \ref{eq:evaluation:central} the central wavelenght $\langle \lamb
     $\lambda_c$ = central wavelength,
     $FWHM_{total}$ = total full width half maximum
      }{fig:evaluation:ir_fitted}
-The outer most peaks are used to estimate the FWHM by using the the relation $FWHM = 2 \sqrt{2 \ln(2)} \cdot \sigma$ which holds for all gauss distribution.
-Now the distance between the two outermost FWHM points is calculate to estimate the total full width half maximum $FWHM_{total}$ as seen in Figure \ref{fig:evaluation:ir_fitted}.
-The error estimates for the fitfunction were calculated using the diagonal elements of the covariance matrix obtained by the library routine, which are an estimation for the variance of the fitparameters.
-Further discussion regarding the results are in Section \ref{sec:discussion}.
+The outer most peaks are used to estimate the FWHM by using the relation $FWHM = 2 \sqrt{2 \ln(2)} \cdot \sigma$, which holds for all Gauss distributions.
+Now the distance between the two outermost FWHM points is calculated to estimate the total full width half maximum, $FWHM_{total}$, as seen in Figure \ref{fig:evaluation:ir_fitted}.
+The error estimates for the fit function were calculated using the diagonal elements of the covariance matrix obtained by the library routine, which are an estimation for the variance of the fit parameters.
+Further discussion regarding the results is in Section \ref{sec:discussion}.
 \begin{table}[H]
 \centering
 \caption{
@@ -65,12 +65,12 @@ $G_6$&$0.57 \pm 0.06$&$1049.50 \pm 0.03$&$1.69 \pm 0.05$\\ \hline
 \end{table}
 \newpage
 \subsection{SHG Characterization}
-Using the same methods as before, a fitting function is estimated and afterwards the central wavelenght $\langle \lambda \rangle$.
-The spectrum is again devided by the maximum Intensity for convinience in fitting.
-As the invidual peaks are quite good resolved, it would not make sence to estimate the FWHM and therefore only the individual FWHM are calculated.
-The peaks from the residual IR Spectrum align nicely with the SHG spectrum if one devides them by two, which is expected with the phonomena of frequency doubling.
-Also the central wavelength of the SHG spectrum is almost exact half of the residual IR spectrum.
-More so the SHG spectrum suggests that some of the incoming IR wavelengths are favoured over others for SH generation.
+Using the same methods as before, a fitting function is estimated, and afterwards the central wavelength is $\langle \lambda \rangle$.
+The spectrum is again divided by the maximum intensity for convenience in fitting.
+As the individual peaks are quite well resolved, it would not make sense to estimate the FWHM, and therefore only the individual FWHM is calculated.
+The peaks from the residual IR spectrum align nicely with the SHG spectrum if one divides them by two, which is expected with the phonomena of frequency doubling.
+Also, the central wavelength of the SHG spectrum is almost exactly half of the residual IR spectrum.
+More so, the SHG spectrum suggests that some of the incoming IR wavelengths are preferred over others for SH generation.
 
 \duofigcom{SHG_fitted_better1.pdf}{fig:evaluation:greenfitted}{SHG_fitted_better2.pdf}{fig:evaluation:redfitted}{
     (a) Second Harmonic Generation spectrum. (b) Residuel Spectrum \\
@@ -79,13 +79,14 @@ More so the SHG spectrum suggests that some of the incoming IR wavelengths are f
     $\lambda_c$ = central wavelength,
     }
     {fig:evaluation:shg_fitted}
-\noindent The residual IR Spectrum has substantially more noice than the other spectra, because its maximal intensity is so low.
+\noindent The residual IR spectrum has substantially more noise than the other spectra because its maximal intensity is so low.
 This results in less precise fitting and a long parameter convergence time.
-To get the conversionrate $C$ first the fitting function of the SHG spectrum is integrated over the relevant intervall around the peaks. 
-Then it is devided by the sum of the two fitting functions in Figure \ref{fig:evaluation:shg_fitted} and integrated under the assumption of energy conservation.:
+To get the conversion rate $C$ first the fitting function of the SHG spectrum is integrated over the relevant interval around the peaks. 
+Then it is divided by the sum of the two fitting functions in Figure \ref{fig:evaluation:shg_fitted} and integrated under the assumption of energy conservation.:
+    
 \begin{align}
-    C &= \frac{\int_{\varOmega} G_{SHG}(\lambda) d \lambda}{ \int_{\Sigma} (G_{SHG}(\lambda) + G_{IR}(\lambda))d \lambda} \\
-    C &= 0.84 \pm 0.02 
+    CR &= \frac{\int_{\varOmega} G_{SHG}(\lambda) d \lambda}{ \int_{\Sigma} (G_{SHG}(\lambda) + G_{IR}(\lambda))d \lambda} \\
+    CR &= (0.84 \pm 0.02)  \hspace{2pt} \% \hspace{3cm} CR \ldots \text{Conversionrate}
 \end{align}
 
 \begin{table}[H]
@@ -124,7 +125,7 @@ Then it is devided by the sum of the two fitting functions in Figure \ref{fig:ev
         $G_4$&$0.58 \pm 0.09$&$1040.73 \pm 1.21$&$4.61 \pm 0.54$\\ \hline
         \end{tabular}
 \end{table}   
-    
+\newpage
 \subsection{Iodine Absorbance}
 \label{sec:evaluation:iodine-absorbance}
 

@@ -86,8 +86,9 @@ spectra_IR = pd.read_csv(path_data+"1-blende-offen.txt",delimiter= "\t")
 spectra_both = pd.read_csv(path_data+"2-IR_and_green.txt",delimiter= "\t")
 spectra_ir_shg = pd.read_csv(path_data+"2-only-IR.txt",delimiter= "\t")
 #spectra_green["Intensity"] = signal.filtfilt(b, a, spectra_green["Intensity"])
-
-
+spect_ir = unp.uarray(spectra_IR["Intensity"], [2]*len(spectra_IR["Intensity"]))
+spect_green = unp.uarray(spectra_green["Intensity"],[2]*len(spectra_green["Intensity"]))
+print("result withou fitting", np.sum(spect_green)/(np.sum(spect_green)+np.sum(spect_ir)))
 guesses_IR2=[
     1,1014,2,
     1,1026,4,
@@ -106,12 +107,14 @@ bound_IR = [
     (0,guesses_IR2[1]-2,-np.inf,0,guesses_IR2[4]-2,-np.inf,0,guesses_IR2[7]-2,-np.inf,0,guesses_IR2[10]-2,-np.inf),
     (np.inf,guesses_IR2[1]+2,np.inf,np.inf,guesses_IR2[4]+2,np.inf,np.inf,guesses_IR2[7]+2,np.inf,np.inf,guesses_IR2[10]+2,np.inf)
 ]
-guesses_green=[
-    0.5, 509, 0.1,
-    0.5, 511, 0.1,
-    1, 511.495601173, 0.1,
-    0.486254133207369, 514.3, 0.1,
-    0.1261848527791214, 517.9765395894, 0.1, 
+guesses_IR2=[
+    1,1014,1,
+    1,1018,1,
+    1,1022,1,
+    1,1030,1,
+    1,1039,1,
+    1,1044.5,1,
+    1, 1048,1, 
     ]
 guesses_green2= [
     0.127,507.5,4,
@@ -127,14 +130,15 @@ spectra_ir_shg["Intensity"] = np.abs(spectra_ir_shg["Intensity"] -baseline)
 print()
 #plt.plot(spectra_ir_shg["Wavelength"], spectra_ir_shg["Intensity"])
 #plt.show()
-param_IR_G ,errors_IR_G, _ , _  = fit_spectra(spectra_IR,guesses=guesses_IR2,bounds=bound_IR)
+param_IR_G ,errors_IR_G, _ , _  = fit_spectra(spectra_IR,guesses=guesses_IR2)
 param_green_G ,errors_green_G, _ , _ = fit_spectra(spectra_green,guesses=guesses_green2)
 param_IR_SHG ,errors_IR_SHG, _ , _  = fit_spectra(spectra_ir_shg,guesses=guesses_IR)
-b =False
+b =True
 a = True
 paramsshg = [param_green_G,param_IR_SHG]
 errorsshg = [errors_green_G,errors_IR_SHG]
 spectrashg = [spectra_green,spectra_ir_shg]
+all_speck = []
 if a: 
     
     
@@ -155,7 +159,7 @@ if a:
     
     fullspectra_ir_u = [add_functions(lam,gaussian_u,*params_IR_un) for lam in Lambda_ir_u]
 
-
+    all_speck.append(fullspectra_ir_u)
     central_ir  = np.sum(fullspectra_ir_u*Lambda_ir_u/np.sum(fullspectra_ir_u))
     print(split)
     FHWM_lower = split[1][0]- np.sqrt(2*np.log(2))*split[2][0]
@@ -179,7 +183,7 @@ if a:
     #plt.savefig(path_graphics+"IR_fitteddx.pdf",dpi=300)
 
 if b:
-    all_speck = []
+    
     all_params = []
     #fig_conv , ax_conv = plt.subplots(2, figsize=(11,9))
     k = 0
@@ -231,13 +235,8 @@ if b:
         lt.latextable(i,"c")
     ratios = all_params[1][1]/all_params[0][1]
     print(ratios, "ratios")
-    print(np.sum(max(spectra_green["Intensity"])*np.array(all_speck[0]))/(np.sum(max(spectra_green["Intensity"])*np.array(all_speck[0]))+ np.sum(max(spectra_ir_shg["Intensity"])*np.array(all_speck[1]))), "speck")
+    print(np.sum(max(spectra_green["Intensity"])*np.array(all_speck[1]))/(np.sum(max(spectra_green["Intensity"])*np.array(all_speck[1]))+ np.sum(max(spectra_IR["Intensity"])*np.array(all_speck[0]))), "speck")
     a1 = un.ufloat(0,0)
     a2 = un.ufloat(0,0)
-    for i in all_speck[0]:
-        a1+=i
-        
-    for j in all_speck[1]:
-        a2+=j
-        #print(a2)
-    print(a1/(a1+a2))
+   
+    
