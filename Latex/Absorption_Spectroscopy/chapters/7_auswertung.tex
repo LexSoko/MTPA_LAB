@@ -16,7 +16,7 @@ Statistical evaluations are subject to a statistical uncertainty according to th
 In the present evaluation, the library \verb|uncertainties| \cite{UN} is used for calculating any uncertainty propagation, as this is based on the principle of the maximum uncertainty method as described in Equation \ref{equ:groestunsicherheit}.
 
 \subsection{Laser Source Characterization}
-In order to obtain the central wavelength and the full width half maximum $FWHM$, the data in Table \ref{tab:execution:infrared-characterization} is fitted using the function \verb|curve_fit|.
+In order to obtain the central wavelength and the full width half maximum $FWHM$, the data obtained as described in Section \ref{sec:execution:infrared-characterization} is fitted using the function \verb|curve_fit|.
 The measured IR spectra are fitted using a sum of multiple gaussian distributions,as seen in Equation \ref{eq:evaluation:fitfunc}.
 For convenience, the spectra were divided by the maximum value of the emission lines. 
 \begin{equation}
@@ -129,7 +129,7 @@ Then it is divided by the sum of the two fitting functions in Figure \ref{fig:ev
 \subsection{Iodine Absorbance}
 \label{sec:evaluation:iodine-absorbance}
 
-Given the transmitted intensities documented in tables \ref{tab:execution:iodine:single:1} to \ref{tab:execution:iodine:triple}, they can be plotted as a function of the respective wavelengths $\lambda$ as shown in Figure \ref{fig:evaluation:transmission}.
+Given the transmitted intensities documented obtained as described in Section \ref{sec:execution:iodine}, they can be plotted as a function of the respective wavelengths $\lambda$ as shown in Figure \ref{fig:evaluation:transmission}.
 
 Using Equation \ref{eq:fundamentals:absorbance}, the absorbance $A$ can be calculated from the obtained transmission spectra. For the different configurations, the resulting absorbance $A$ as a function of the wavelength $\lambda$ is shown in figures \ref{fig:evaluation:absorbance:single:1} to \ref{fig:evaluation:absorbance:triple}. In order to make absorption more visible, a Savitzky–Golay filter using \verb|scipy.signal.savgol_filter| with a window length of $15$ and polynomial order of $1$ are applied to the plotted absorbance. Furthermore, in order to make it easier to identify expected absorption peaks in the recorded absorbance the molar absorption coefficient $\varepsilon$ - which is used later for calculating the concentration $c$ of iodine - is plotted on a second axis.
 
