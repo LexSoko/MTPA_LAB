@@ -10,7 +10,7 @@ import modules.latextools as lt
 import uncertainties as un
 import uncertainties.umath as um
 import math as m
-from uncertainties import unumpy as unp
+ 
 path_data = "C:\\Lab_Master\\MTPA\\MTPA_LAB\\Latex\\Absorption_Spectroscopy\\data\\"
 path_graphics = "C:\\Lab_Master\\MTPA\\MTPA_LAB\\Latex\\Absorption_Spectroscopy\\graphics\\"
 
